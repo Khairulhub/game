@@ -17,10 +17,11 @@ let player2Array = [];
 
 let table = document.getElementById('table-box');
 var arr = [[],[],[],[],[],[],[],[]];
-// String[][] arr = new String[rows][col];
 
 
-
+// const url = ''
+// fetch(url).then( res => res.json()).then( data => data )
+// console.log( arr.length)
 // ================================>function to create the table
 for (let i = 0; i < rows; i++) {
 
@@ -34,54 +35,78 @@ for (let i = 0; i < rows; i++) {
 
 }
 
-// ================================>function to create the table
+// ================================>function to create the table and take vale from input
 
-table.addEventListener("keypress", function (e) {
-    console.log(e.key);
+table.addEventListener("click", function (e) {
+//     console.log(e);
     let value = e.key;
-    // let id = e.target.id;
+    let id = e.target.id;
+
   
     
     // console.log(arr.length);
 //    console.log(e.target.id);
         if (document.getElementById(e.target.id).value != '') {
-                return
+                return;
         }
         document.getElementById(e.target.id).style.color = game_status ? "black" : "red"
         if (game_status) {
-                game_status = false
+                game_status = false;
 
+                for (let i = 0; i < arr.length; i++) {
+  
+                        for (let j = 0; j < arr.length; j++) {
+                              arr[i].forEach((value)=>{
+                                        if(!player1Array.includes(value) == player1.includes(value)){
+                                                player1Array.push(value);
+                                                // if(player1Array.includes(value) == player1.includes(value)){
+                                                //         // arr[i][j]=document.getElementById(e.target.id).value =='';
+                                                //         player1Array.pop(value);
+                                                //         console.log(player1Array);
+                                                //         // console.log(arr[i][j]);
+                                                // //        arr[i].splice(arr[i].iOf(value),1);
+                                                // // console.log(); 
+                                                // // console.log(e.key);
+                                                // }
+                                        } 
 
-                let newArray2 = player2.indexOf(value);
-                if(newArray2 > -1){
-                     player2.splice(newArray2, 1);
-                     console.log(player2);
-                 }
-                     for(let i = 0; i< 1 ; i++){
-                       player2Array.push(value);
+                                })
+                                // console.log(arr[i].indexOf(value));
+                        } 
                     }
-                    console.log('player2',player2Array);
-        
-                    // if((player2.lenght==26) && (player2Array.lenght==26)){
-                    //           word.disabled = true;
-                    //      }
+                        console.log('value player1 ',player1Array); 
+                        console.log('value length',player1Array.length); 
+
+                
 
         } 
         else {
                 game_status = true
 
-                 //person1============> by using number
+              for (let i = 0; i < arr.length; i++) {
+  
+                for (let j = 0; j < arr.length; j++) {
+                        arr[i].forEach((value)=>{
+                                  if(!player2Array.includes(value) ==player2.includes(value)){
+                                          player2Array.push(value);
+                                        } 
+                                        else if(player2Array?.includes(value) === value){
 
-                    let newArray1 = player1.indexOf(value);
-                    if(newArray1 > -1){
-                     player1.splice(newArray1, 1);
-                         console.log(player1);
-                    }
-        
-                    for(let i = 0; i< 1 ; i++){
-                         player1Array.push(value);
-                         }
-                        console.log('player1',player1Array);
+                                              //        arr[i].splice(arr[i].iOf(value),1);
+                                              console.log(' you have already entered this value'); 
+                                              }
+                                //   else{
+                                //         player2Array.push('');
+                                //   } 
+                                //   if(player2Array.length > player2.length){
+                                //           alert('player2 win');
+                                //   }
+                          })
+                  } 
+              }
+                  console.log('value player2 ',player2Array); 
+                  console.log('value length',player2Array.length); 
+                  console.log('value length',player2.length); 
         }
 
 
@@ -89,32 +114,91 @@ table.addEventListener("keypress", function (e) {
 
         for (let i = 0; i < arr.length; i++) {
             arr[i]=[];
+            // debugger;
             // console.log(arr.length);
             for (let j = 0; j < arr.length; j++) {
                
-               if(document.getElementById(`inputvalue${i}${j}`).value != ''){
+               if((document.getElementById(`inputvalue${i}${j}`) !== '')){
                          arr[i].push(document.getElementById(`inputvalue${i}${j}`).value);
-
                
-
-                        //  array = document.getElementById(e.target.id) != '' ? value : '';
-                          // arr[i][j] = array;
-                         console.log(arr[i][j]);
+                        //  while ( arr[i].length > 2 ) {
+                        //          //Get a word out of the existing letters
+                        //               let text = arr.join("");
+                        //  }
+                       
+                         
+                        //  console.log(arr[i][j]);
+                        
                 }
                 else{
                         arr[i].push('');
                 }
-                // console.log(arr[i]);
+                
             }
-            // console.log(array);
-
-
-        //   arr.push(array);
-            console.log(arr);
-            console.log(arr.length);
+       
+        
+        // valueOfCol(arr,i);
+        // console.log("arr[i] ",arr[i]);
         }
+        console.log("arr ",arr);
+      
+   
 
 
+
+
+
+
+// console.log(player1.includes(value));
+
+
+let rowsValue = '';
+let colsValue = [];
+
+for (let i = 0; i < arr.length; i++) {
+        for (let j = 0; j < arr.length; j++) {
+              arr[i].forEach((value)=>{
+                //        console.log(arr[i].indexOf(value));
+                        if((arr[i][j].includes(value)) != ''){
+                                // console.log('value',value);
+                                rowsValue = arr[i][j] + arr[i][j+1]+arr[i][j+2]+arr[i][j+3]+arr[i][j+4]+arr[i][j+5]+arr[i][j+6]+arr[i][j+7];
+                                console.log('arr[i][j]',rowsValue);
+                        }
+                        // else if(arr[i][j].includes(value)&&(player2.includes(value))){
+                        //         // console.log('value',value);
+                        //         arr=arr[i][j] + arr[i][j+1]+arr[i][j+2]+arr[i][j+3]+arr[i][j+4];
+                        //         console.log('arr[i][j]',arr);
+                        // }
+                          
+                })
+        } 
+    }
+        // console.log('value player1 ',player1Array); 
+        // console.log('value length',player1Array.length); 
+
+         
+            
+        //   for (let i = 0; i < arr.length; i++) {
+        //         // const element = array[i];
+        //         for (let j = 0; j < arr.length; j++) {
+        //                 // const element = array[j];
+        //                 arr[i].forEach((value)=>{
+        //                         arr[i][j] = arr[i][j].value + arr[i][j+1].value+arr[i][j+2]+arr[i][j+3]+arr[i][j+4];
+        //                 console.log(arr[i][j]);
+        //                 })
+
+                        
+        //         }
+
+                
+        //   }
+                // console.log(arr);
+
+        
+//     console.log('value length',player1Array.length); 
+//     console.log('value length',player2Array.length); 
+//     console.log('value',player1Array); 
+//     console.log('value',player2Array); 
 
 
 
@@ -178,9 +262,12 @@ p2text[0].appendChild(span);
 
 
 
+function valueOfCol(customArr,n){
+        const arrayColumn = (arr, n) => arr.map(x => x[n]);
 
+console.log(arrayColumn(customArr, n));
 
-
+}
 
 
 
